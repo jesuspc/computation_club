@@ -6,7 +6,7 @@ data Term = ZTrue
           | ZZero
           | ZSucc Term
           | ZPred Term
-          | ZIsZero Term deriving (Show, Eq)
+          | ZIsZero Term deriving Show
 
 isValue :: Term -> Bool
 isValue ZTrue  = True
