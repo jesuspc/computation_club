@@ -1,12 +1,12 @@
 module TplUntypedArithmetic where
 
-data Term = ZTrue |
-            ZFalse |
-            ZIf Term Term Term |
-            ZZero |
-            ZSucc Term |
-            ZPred Term |
-            ZIsZero Term deriving (Show, Eq)
+data Term = ZTrue
+          | ZFalse
+          | ZIf Term Term Term
+          | ZZero
+          | ZSucc Term
+          | ZPred Term
+          | ZIsZero Term deriving (Show, Eq)
 
 isValue :: Term -> Bool
 isValue ZTrue  = True
