@@ -18,19 +18,19 @@ isNumerical (ZSucc x) = isNumerical x
 isNumerical ZZero     = True
 isNumerical _         = False
 
-eval :: Term -> Term
-eval (ZIf ZTrue ifTrue _)      = ifTrue
-eval (ZIf ZFalse _ ifFalse)    = ifFalse
-eval (ZIf cond ifTrue ifFalse) = ZIf (eval cond) ifTrue ifFalse
-eval (ZSucc x)                 = ZSucc $ eval x
-eval (ZPred ZZero)             = ZZero
-eval (ZPred (ZSucc x))         | isNumerical x = x
-eval (ZPred x)                 = ZPred $ eval x
-eval (ZIsZero ZZero)           = ZTrue
-eval (ZIsZero (ZSucc x))       | isNumerical x = ZFalse
-eval (ZIsZero x)               = ZIsZero $ eval x
-eval t                         = t
+eval :: Term -> Maybe Term
+eval (ZIf ZTrue ifTrue _)      = Just ifTrue
+eval (ZIf ZFalse _ ifFalse)    = Just ifFalse
+eval (ZIf cond ifTrue ifFalse) = fmap (\cond'-> ZIf cond' ifTrue ifFalse) (eval cond)
+eval (ZSucc x)                 = fmap ZSucc (eval x)
+eval (ZPred ZZero)             = Just ZZero
+eval (ZPred (ZSucc x))         | isNumerical x = Just x
+eval (ZPred x)                 = fmap ZPred (eval x)
+eval (ZIsZero ZZero)           = Just ZTrue
+eval (ZIsZero (ZSucc x))       | isNumerical x = Just ZFalse
+eval (ZIsZero x)               = fmap ZIsZero (eval x)
+eval t                         = Nothing
 
-recEval :: Term -> Term
-recEval t | t == eval t = t
-recEval t = recEval $ eval t
+recEval :: Term -> Maybe Term
+recEval t | isValue t = Just t
+recEval t = eval t >>= recEval
