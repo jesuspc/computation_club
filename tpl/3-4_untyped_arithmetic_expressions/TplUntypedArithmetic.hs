@@ -32,5 +32,5 @@ eval (ZIsZero x)               = ZIsZero $ eval x
 eval t                         = t
 
 recEval :: Term -> Term
-recEval t | t == (eval t) = t
+recEval t | t == eval t = t
 recEval t = recEval $ eval t
