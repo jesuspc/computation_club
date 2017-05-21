@@ -1,4 +1,4 @@
-module TplSimplyTypedLC where
+module TplSimplyTypedLC (typeof, emptyCtx, Term (..), Type (..)) where
 
 import qualified Data.Map.Strict as Map
 
