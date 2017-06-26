@@ -14,9 +14,9 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src/tpl,
-                       src/tpl/3-4-untyped-arithmetic-expressions,
-                       src/tpl/9-10-simply-typed-lambda-calculus,
-                       src/tpl/7-lambda-calculus
+                       src/tpl/03-04-untyped-arithmetic-expressions,
+                       src/tpl/09-10-simply-typed-lambda-calculus,
+                       src/tpl/07-lambda-calculus
   exposed-modules:     TplUntypedArithmetic,
                        TplSimplyTypedLC,
                        TplLC
