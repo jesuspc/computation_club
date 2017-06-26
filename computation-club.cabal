@@ -15,9 +15,11 @@ cabal-version:       >=1.10
 library
   hs-source-dirs:      src/tpl,
                        src/tpl/3-4-untyped-arithmetic-expressions,
-                       src/tpl/9-10-simply-typed-lambda-calculus
+                       src/tpl/9-10-simply-typed-lambda-calculus,
+                       src/tpl/7-lambda-calculus
   exposed-modules:     TplUntypedArithmetic,
-                       TplSimplyTypedLC
+                       TplSimplyTypedLC,
+                       TplLC
   build-depends:       base >= 4.7 && < 5
                      , containers
 
@@ -39,7 +41,9 @@ test-suite tpl-test
   hs-source-dirs:      test/tpl
   main-is:             Spec.hs
   build-depends:       base
+                     , computation-club
                      , hspec
+
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   default-language:    Haskell2010
 
